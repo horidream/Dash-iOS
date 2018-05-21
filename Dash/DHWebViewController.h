@@ -44,6 +44,7 @@
 @property (strong) id lastTocBrowser;
 @property (weak) UIBarButtonItem *toggleSplitViewButton;
 @property (assign) BOOL isRestoring;
+@property (assign) BOOL needsReload;
 @property (assign) BOOL isDecoding;
 @property (strong) NSDate *lastLoadDate;
 @property (assign) BOOL stopButtonIsShown;

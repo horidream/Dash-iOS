@@ -1101,7 +1101,7 @@
 						ProvisioningStyle = Automatic;
 					};
 					43FD2EE119BB8D87007E594D = {
-						DevelopmentTeam = JP58VMK957;
+						DevelopmentTeam = 5296P9QS3C;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1788,7 +1788,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bogdan Popescu (JB3QRP5DC5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = JP58VMK957;
+				DEVELOPMENT_TEAM = 5296P9QS3C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks\"";
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1828,7 +1828,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bogdan Popescu (JB3QRP5DC5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = JP58VMK957;
+				DEVELOPMENT_TEAM = 5296P9QS3C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

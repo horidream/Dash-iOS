@@ -48,6 +48,7 @@ static id singleton = nil;
         return;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prepareForURLSearch:) name:DHPrepareForURLSearch object:nil];
+    self.needsReload = false;
     self.title = @"";
     self.webView.scrollView.delegate = self;
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -276,9 +277,12 @@ static id singleton = nil;
         [self performSelector:@selector(updateBackForwardButtonState) withObject:self afterDelay:0.1];
         return YES;
     }
-    if(navigationType == UIWebViewNavigationTypeLinkClicked || navigationType == UIWebViewNavigationTypeFormSubmitted || navigationType == UIWebViewNavigationTypeFormResubmitted)
+    if(navigationType == UIWebViewNavigationTypeLinkClicked || navigationType == UIWebViewNavigationTypeFormSubmitted || navigationType == UIWebViewNavigationTypeFormResubmitted || navigationType == UIWebViewNavigationTypeBackForward)
     {
-        [[DHRemoteServer sharedServer] sendWebViewURL:[request URL].absoluteString];
+        [[DHRemoteServer sharedServer] sendWebViewURL: [request URL].absoluteString];
+    }
+    if(navigationType == UIWebViewNavigationTypeBackForward){
+        self.needsReload = YES;
     }
     [self performSelector:@selector(updateBackForwardButtonState) withObject:self afterDelay:0.1];
     return YES;
@@ -301,10 +305,16 @@ static id singleton = nil;
     }
 }
 
+
+
 - (void)setUpTOC
 {
     if([DHRemoteServer sharedServer].connectedRemote || [[self loadedURL] hasPrefix:@"dash-apple-api://"])
     {
+        if(self.needsReload){
+            [self.webView reload];
+            self.needsReload = NO;
+        }
         return;
     }
     self.lastTocBrowser = nil;
