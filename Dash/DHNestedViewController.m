@@ -136,11 +136,17 @@
         [self clearIsActive];
         result.isActive = YES;
         [[DHWebViewController sharedWebViewController] loadResult:result];
+        UIBarButtonItem *btn = [[DHWebViewController sharedWebViewController] toggleSplitViewButton];
+        [btn setImage:[UIImage imageNamed:@"collapse"]];
+        [btn.target performSelector:btn.action withObject:nil afterDelay:0];
+
     }
     else
     {
         [[DHWebViewController sharedWebViewController] loadResult:result];
         [self performSegueWithIdentifier:@"DHSearchWebViewSegue" sender:self];
+        UIBarButtonItem *btn = [[DHWebViewController sharedWebViewController] toggleSplitViewButton];
+        [btn.target performSelector:btn.action withObject:nil afterDelay:0];
     }
     if(result.isRemote)
     {

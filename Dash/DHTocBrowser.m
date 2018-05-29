@@ -123,6 +123,7 @@
     }
     else
     {
+        [self performSelector:@selector(dismissModal:) withObject:self afterDelay:0.0f];
 //        if(self.webViewController.navigationController.toolbarHidden)
 //        {
 //            self.webViewController.ignoreScroll = YES;

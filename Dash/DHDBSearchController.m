@@ -255,11 +255,17 @@
             if(isRegularHorizontalClass)
             {
                 [[DHWebViewController sharedWebViewController] loadResult:result];
+                UIBarButtonItem *btn = [[DHWebViewController sharedWebViewController] toggleSplitViewButton];
+                [btn setImage:[UIImage imageNamed:@"collapse"]];
+                [btn.target performSelector:btn.action withObject:nil afterDelay:0];
             }
             else
             {
                 [[DHWebViewController sharedWebViewController] loadResult:result];
                 [self.viewController performSegueWithIdentifier:@"DHSearchWebViewSegue" sender:self];
+                UIBarButtonItem *btn = [[DHWebViewController sharedWebViewController] toggleSplitViewButton];
+                [btn setImage:[UIImage imageNamed:@"collapse"]];
+                [btn.target performSelector:btn.action withObject:nil afterDelay:0];
             }
         }
     }
