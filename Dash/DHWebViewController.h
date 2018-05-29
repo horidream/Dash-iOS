@@ -30,6 +30,7 @@
 @property (strong) UIBarButtonItem *forwardButton;
 //@property (strong) UIBarButtonItem *stopButton;
 //@property (strong) UIBarButtonItem *reloadButton;
+@property (strong) UIBarButtonItem *pasteButton;
 @property (strong) UIBarButtonItem *zoomOutButton;
 @property (strong) UIBarButtonItem *zoomInButton;
 @property (strong) DHWebProgressView *progressView;

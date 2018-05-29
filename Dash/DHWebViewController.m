@@ -72,6 +72,7 @@ static id singleton = nil;
     
     self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
     self.forwardButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"forward"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward)];
+    self.pasteButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch)];
     self.zoomOutButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoomOut"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomOut)];
     self.zoomInButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoomIn"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomIn)];
 //    self.stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self.webView action:@selector(stopLoading)];
@@ -79,9 +80,32 @@ static id singleton = nil;
     
     [self updateBackForwardButtonState];
     
-    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
+    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton,UIBarButtonWithFixedWidth(10), self.pasteButton,  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
     [self updateStopReloadButtonState];
     self.didLoadOnce = YES;
+}
+
+- (void)quickSearch
+{
+    
+    UINavigationController * navi = (UINavigationController*)[self.splitViewController.viewControllers firstObject];
+    NSArray * arr = [navi viewControllers];
+    NSInteger index = [arr indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj isKindOfClass:[DHTypeBrowser class]];
+    }];
+    if (NSNotFound != index ){
+        [navi popToViewController:[arr objectAtIndex:index] animated:NO];
+        DHTypeBrowser * controller = (DHTypeBrowser*)[navi topViewController];
+        controller.searchController.displayController.searchBar.text = [UIPasteboard.generalPasteboard string];
+    }
+    
+    [self.webView.window.rootViewController.view endEditing:YES];
+    [UIView animateWithDuration:0.3 animations:^{
+        {
+            [self.toggleSplitViewButton setImage:[UIImage imageNamed:@"expand"]];
+            [self.splitViewController setPreferredDisplayMode:UISplitViewControllerDisplayModeAllVisible];
+        }
+    }];
 }
 
 - (void)goBack
@@ -193,7 +217,7 @@ static id singleton = nil;
     {
         self.navigationItem.leftBarButtonItems = nil;
     }
-    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
+    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton,UIBarButtonWithFixedWidth(10), self.pasteButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
     
 }
 
