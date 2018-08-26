@@ -25,6 +25,7 @@
 - (NSString *)renderContentXML:(id)contentXML;
 - (NSString *)renderDisplayNameXML:(NSString *)displayNameXML;
 - (NSString *)convertDashLinkToLocalDumpIfAppropriate:(NSString *)dashLink;
+- (NSMutableDictionary *)grabJSON;
 + (void)cleanUp;
 
 @end
@@ -101,5 +102,7 @@
 #define kContent @"x"
 #define kAvailability @"y"
 #define k1x_Scale @"1x"
+#define k1x_DarkScale @"d1x"
 #define k2x_Scale @"2x"
+#define k2x_DarkScale @"d2x"
 #define kMissing_Paths @"xp"

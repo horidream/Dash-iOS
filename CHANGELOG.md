@@ -1,7 +1,18 @@
 # Master
 
+* Added the Swift docset back - [ec51356](https://github.com/Kapeli/Dash-iOS/commit/ec51356e95ac7a0aedbd94e648771578174db35a)
+* Fixed an UI issue which occurred only in landscape mode on iPhone X. Thanks to [@qinyuhang](https://github.com/qinyuhang) for reporting the issue and [@DmytriE](https://github.com/DmytriE) for fixing it - [#80](https://github.com/Kapeli/Dash-iOS/pull/80)
+
+# 1.8.8
+
+* Apple API Reference docset: added support for Xcode 9.4 and Xcode 10 - [f29d3f0](https://github.com/Kapeli/Dash-iOS/commit/f29d3f01bb2030b81e311f74e45f5743568e53e6) and [0acc05c](https://github.com/Kapeli/Dash-iOS/commit/0acc05c01aadb427a51579c2b7a048a32e825bdf)
+
+# 1.8.7
+
+* Improved the way Dash selects the best server to connect to - [e122d05](https://github.com/Kapeli/Dash-iOS/commit/e122d05120aab70b2545f5300806a564276ee6d8)
 * Added Java SE10 docset - [c9d62b1](https://github.com/Kapeli/Dash-iOS/commit/c9d62b169fe9aa8945d8d0af7034e57928473741)
 * Removed JavaFX docset as it's now part of the Java SE docset - [c9d62b1](https://github.com/Kapeli/Dash-iOS/commit/c9d62b169fe9aa8945d8d0af7034e57928473741)
+* Docset index pages can now scroll to a specific section within the page - [091f04a](https://github.com/Kapeli/Dash-iOS/commit/091f04a10754a4256bd5e35545b3532440e63571)
 
 # 1.8.6
 

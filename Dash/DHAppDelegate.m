@@ -250,16 +250,16 @@
 {
     NSDictionary *hashes = @{@"DHDBSearcher": @"f3a251f7",
                              @"DHDBResult": @"cd091ec9",
-                             @"DHDBUnifiedResult": @"b332793c",
+                             @"DHDBUnifiedResult": @"f2731133",
                              @"DHQueuedDB": @"0199255c",
                              @"DHUnifiedQueuedDB": @"dd42266b",
                              @"DHDBUnifiedOperation": @"1671a905",
-                             @"DHWebViewController": @"93901dff",
-                             @"DHWebPreferences": @"1f358da2",
-                             @"DHDocsetDownloader": @"9ec14e35",
-                             @"PlatformIcons": @"dd07b6ef",
-                             @"DHTypes": @"5ed28f56",
-                             @"Types": @"5ed28f56",
+                             @"DHWebViewController": @"e13a7c34",
+                             @"DHWebPreferences": @"cc5a4871",
+                             @"DHDocsetDownloader": @"e34c285b",
+                             @"PlatformIcons": @"6bd7e7a7",
+                             @"DHTypes": @"1ec6d1a4",
+                             @"Types": @"1ec6d1a4",
                              @"CSS": @"00239752",
                              };
     [hashes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
