@@ -249,18 +249,18 @@
 - (void)checkCommitHashes
 {
     NSDictionary *hashes = @{@"DHDBSearcher": @"f3a251f7",
-                             @"DHDBResult": @"cd091ec9",
+                             @"DHDBResult": @"4bbe246d",
                              @"DHDBUnifiedResult": @"f2731133",
                              @"DHQueuedDB": @"0199255c",
                              @"DHUnifiedQueuedDB": @"dd42266b",
                              @"DHDBUnifiedOperation": @"1671a905",
-                             @"DHWebViewController": @"e13a7c34",
-                             @"DHWebPreferences": @"cc5a4871",
-                             @"DHDocsetDownloader": @"e34c285b",
+                             @"DHWebViewController": @"d1ebd6cd",
+                             @"DHWebPreferences": @"8419f130",
+                             @"DHDocsetDownloader": @"dc586701",
                              @"PlatformIcons": @"6bd7e7a7",
                              @"DHTypes": @"1ec6d1a4",
                              @"Types": @"1ec6d1a4",
-                             @"CSS": @"00239752",
+                             @"CSS": @"7be5591d",
                              };
     [hashes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSString *plistHash = [[NSBundle mainBundle] infoDictionary][[key stringByAppendingString:@"Commit"]];

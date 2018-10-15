@@ -1,5 +1,14 @@
 # Master
 
+* Nothing yet.
+
+# 1.8.10
+
+* Added support for the Xcode 10 docs - [2aa2284](https://github.com/Kapeli/Dash-iOS/commit/2aa228480092f311b6ae809cfedff2ad5701e2cf)
+* Added Java SE11 docset - [55ca952](https://github.com/Kapeli/Dash-iOS/commit/55ca952e25edfbf82100299f9c1f9d7ba6eb377a)
+
+# 1.8.9
+
 * Added the Swift docset back - [ec51356](https://github.com/Kapeli/Dash-iOS/commit/ec51356e95ac7a0aedbd94e648771578174db35a)
 * Fixed an UI issue which occurred only in landscape mode on iPhone X. Thanks to [@qinyuhang](https://github.com/qinyuhang) for reporting the issue and [@DmytriE](https://github.com/DmytriE) for fixing it - [#80](https://github.com/Kapeli/Dash-iOS/pull/80)
 
