@@ -97,15 +97,22 @@ static id singleton = nil;
         [navi popToViewController:[arr objectAtIndex:index] animated:NO];
         DHTypeBrowser * controller = (DHTypeBrowser*)[navi topViewController];
         controller.searchController.displayController.searchBar.text = [UIPasteboard.generalPasteboard string];
+    }else{
+        DHTypeBrowser * controller = [DHTypeBrowser init];
+        [navi pushViewController:controller animated:NO];
+        controller.searchController.displayController.searchBar.text = [UIPasteboard.generalPasteboard string];
     }
     
     [self.webView.window.rootViewController.view endEditing:YES];
-    [UIView animateWithDuration:0.3 animations:^{
-        {
-            [self.toggleSplitViewButton setImage:[UIImage imageNamed:@"expand"]];
-            [self.splitViewController setPreferredDisplayMode:UISplitViewControllerDisplayModeAllVisible];
-        }
-    }];
+    //    [UIView animateWithDuration:0.3 animations:^{
+    //        {
+    //            [self.toggleSplitViewButton setImage:[UIImage imageNamed:@"expand"]];
+    //            [self.splitViewController setPreferredDisplayMode:UISplitViewControllerDisplayModeAllVisible];
+    //        }
+    //    } completion:^(BOOL finished) {
+    //        UINavigationController *leftNavi = self.splitViewController.viewControllers[0];
+    //        NSLog(@"%@", leftNavi.viewControllers);
+    //    }];
 }
 
 - (void)goBack
