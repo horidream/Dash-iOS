@@ -72,12 +72,13 @@ static id singleton = nil;
     
     self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
     self.forwardButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"forward"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward)];
-    self.pasteButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch)];
+    self.pasteButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch:)];
     self.zoomOutButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoomOut"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomOut)];
     self.zoomInButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoomIn"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomIn)];
 //    self.stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self.webView action:@selector(stopLoading)];
 //    self.reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload)];
-    
+    UIMenuItem* searchItem = [[UIMenuItem alloc] initWithTitle:@"Search" action:@selector(quickSearch:)];
+    [UIMenuController sharedMenuController].menuItems = @[searchItem];
     [self updateBackForwardButtonState];
     
     self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton,UIBarButtonWithFixedWidth(10), self.pasteButton,  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
@@ -85,7 +86,11 @@ static id singleton = nil;
     self.didLoadOnce = YES;
 }
 
-- (void)quickSearch
+- (NSString *)selectedText {
+    return [self.webView stringByEvaluatingJavaScriptFromString:@"window.getSelection().toString()"];
+}
+
+- (void)quickSearch:(id)sender
 {
     
     UINavigationController * navi = (UINavigationController*)[self.splitViewController.viewControllers firstObject];
@@ -93,26 +98,37 @@ static id singleton = nil;
     NSInteger index = [arr indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return [obj isKindOfClass:[DHTypeBrowser class]];
     }];
+    
+    BOOL hasMoreResult = NO;
+    
     if (NSNotFound != index ){
         [navi popToViewController:[arr objectAtIndex:index] animated:NO];
         DHTypeBrowser * controller = (DHTypeBrowser*)[navi topViewController];
-        controller.searchController.displayController.searchBar.text = [UIPasteboard.generalPasteboard string];
+        controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? [self selectedText] : [UIPasteboard.generalPasteboard string];
+        [controller.searchController.displayController.searchBar becomeFirstResponder];
+        DHDBResult *result = [controller.searchController.results firstObject];
+        hasMoreResult = result.similarResults.count;
+        
     }else{
-        DHTypeBrowser * controller = [DHTypeBrowser init];
-        [navi pushViewController:controller animated:NO];
-        controller.searchController.displayController.searchBar.text = [UIPasteboard.generalPasteboard string];
+        DHDocsetBrowser * controller = (DHDocsetBrowser*)[navi topViewController];
+        controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? [self selectedText] : [UIPasteboard.generalPasteboard string];
+        [controller.searchController.displayController.searchBar becomeFirstResponder];
+        DHDBResult *result = [controller.searchController.results firstObject];
+        hasMoreResult = result.similarResults.count;
     }
-    
     [self.webView.window.rootViewController.view endEditing:YES];
-    //    [UIView animateWithDuration:0.3 animations:^{
-    //        {
-    //            [self.toggleSplitViewButton setImage:[UIImage imageNamed:@"expand"]];
-    //            [self.splitViewController setPreferredDisplayMode:UISplitViewControllerDisplayModeAllVisible];
-    //        }
-    //    } completion:^(BOOL finished) {
-    //        UINavigationController *leftNavi = self.splitViewController.viewControllers[0];
-    //        NSLog(@"%@", leftNavi.viewControllers);
-    //    }];
+    if(hasMoreResult){
+        [UIView animateWithDuration:0.3 animations:^{
+            {
+                [self.toggleSplitViewButton setImage:[UIImage imageNamed:@"expand"]];
+                [self.splitViewController setPreferredDisplayMode:UISplitViewControllerDisplayModeAllVisible];
+            }
+        } completion:^(BOOL finished) {
+            UINavigationController *leftNavi = self.splitViewController.viewControllers[0];
+            NSLog(@"%@", leftNavi.viewControllers);
+        }];
+        
+    }
 }
 
 - (void)goBack
