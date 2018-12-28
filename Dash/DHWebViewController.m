@@ -100,19 +100,19 @@ static id singleton = nil;
     }];
     
     BOOL hasMoreResult = NO;
-    
+    NSString *selectedText = [self selectedText];
     if (NSNotFound != index ){
         [navi popToViewController:[arr objectAtIndex:index] animated:NO];
         DHTypeBrowser * controller = (DHTypeBrowser*)[navi topViewController];
-        controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? [self selectedText] : [UIPasteboard.generalPasteboard string];
         [controller.searchController.displayController.searchBar becomeFirstResponder];
+        controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? selectedText : [UIPasteboard.generalPasteboard string];
         DHDBResult *result = [controller.searchController.results firstObject];
         hasMoreResult = result.similarResults.count;
         
     }else{
         DHDocsetBrowser * controller = (DHDocsetBrowser*)[navi topViewController];
-        controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? [self selectedText] : [UIPasteboard.generalPasteboard string];
         [controller.searchController.displayController.searchBar becomeFirstResponder];
+        controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? selectedText : [UIPasteboard.generalPasteboard string];
         DHDBResult *result = [controller.searchController.results firstObject];
         hasMoreResult = result.similarResults.count;
     }
