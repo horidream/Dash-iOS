@@ -83,9 +83,30 @@ static id singleton = nil;
     
     self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton,UIBarButtonWithFixedWidth(10), self.pasteButton,  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
     [self updateStopReloadButtonState];
+    [self setupGensture];
     self.didLoadOnce = YES;
 }
 
+-(void) setupGensture{
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.webView addGestureRecognizer:leftSwipe];
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.webView addGestureRecognizer:rightSwipe];
+}
+
+-(void) onSwipe:(UISwipeGestureRecognizer *)sender{
+    if(sender.direction == UISwipeGestureRecognizerDirectionRight){
+        if([self.webView canGoBack]){
+            [self goBack];
+        }
+    }else{
+        if([self.webView canGoForward]){
+            [self goForward];
+        }
+    }
+}
 - (NSString *)selectedText {
     return [self.webView stringByEvaluatingJavaScriptFromString:@"window.getSelection().toString()"];
 }
