@@ -128,14 +128,14 @@ static id singleton = nil;
         [controller.searchController.displayController.searchBar becomeFirstResponder];
         controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? selectedText : [UIPasteboard.generalPasteboard string];
         DHDBResult *result = [controller.searchController.results firstObject];
-        hasMoreResult = result.similarResults.count;
+        hasMoreResult = result.similarResults.count > 1;
         
     }else{
         DHDocsetBrowser * controller = (DHDocsetBrowser*)[navi topViewController];
         [controller.searchController.displayController.searchBar becomeFirstResponder];
         controller.searchController.displayController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? selectedText : [UIPasteboard.generalPasteboard string];
         DHDBResult *result = [controller.searchController.results firstObject];
-        hasMoreResult = result.similarResults.count;
+        hasMoreResult = result.similarResults.count > 1;
     }
     [self.webView.window.rootViewController.view endEditing:YES];
     if(hasMoreResult){
