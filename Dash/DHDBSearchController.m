@@ -117,100 +117,25 @@
     self.loading = loading;
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
-{
-    self.loading = YES;
-    tableView.allowsSelection = NO;
+- (void)willPresentSearchController:(UISearchController *)searchController {
     if(isIOS11)
     {
         if(@available(iOS 11.0, *))
         {
-            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
-    [tableView registerNib:[UINib nibWithNibName:@"DHBrowserCell" bundle:nil] forCellReuseIdentifier:@"DHBrowserCell"];
-    [tableView registerNib:[UINib nibWithNibName:@"DHLoadingCell" bundle:nil] forCellReuseIdentifier:@"DHLoadingCell"];
 }
-
 - (void)didPresentSearchController:(UISearchController *)searchController {
     self.viewControllerTitle = self.navigationItem.title;
     self.navigationItem.title = @"Search";
 }
 
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
-{
-    if([self respondsToSelector:@selector(searchDisplayControllerDidBeginSearch:)])
-    {
-        [(id)self searchDisplayControllerDidBeginSearch:controller];
-    }
-    self.viewControllerTitle = self.navigationItem.title;
-    self.navigationItem.title = @"Search";
-}
-
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
-{
-    if([self respondsToSelector:@selector(searchDisplayControllerWillEndSearch:)])
-    {
-        [(id)self searchDisplayControllerWillEndSearch:controller];
-    }
+- (void)willDismissSearchController:(UISearchController *)searchController {
     self.navigationItem.title = self.viewControllerTitle;
     [self.searcher cancelSearch];
     self.searcher = nil;
-}
 
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
-{
-    if([self respondsToSelector:@selector(searchDisplayControllerDidEndSearch:)])
-    {
-        [(id)self searchDisplayControllerDidEndSearch:controller];
-    }
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    if(self.isRestoring)
-    {
-        self.tableView.allowsSelection = YES;
-        self.loading = NO;
-        return YES;
-    }
-    [self.searcher cancelSearch];
-    self.nextResults = [NSMutableArray array];
-    BOOL wasEmpty = searchString.length <= 0;
-    searchString = [searchString stringByRemovingWhitespaces];
-    if(searchString.length)
-    {
-        self.searcher = [DHDBSearcher searcherWithDocsets:(self.docsets) ? self.docsets : [(id)self shownDocsets] query:searchString limitToType:self.typeLimit delegate:self];
-    }
-    else
-    {
-        self.results = [NSMutableArray array];
-        if(wasEmpty)
-        {
-            self.loading = YES;
-            self.tableView.allowsSelection = NO;
-        }
-        else
-        {
-            self.loading = NO;
-            self.tableView.allowsSelection = YES;
-        }
-        return YES;
-    }
-    return NO;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
-{
-    [self tableView].separatorStyle = UITableViewCellSeparatorStyleNone;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
-{
-    [self tableView].separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-
-    [self.searcher cancelSearch];
-    self.searcher = nil;
 }
 
 - (void)searcher:(DHDBSearcher *)searcher foundResults:(NSArray *)results hasMore:(BOOL)hasMore
