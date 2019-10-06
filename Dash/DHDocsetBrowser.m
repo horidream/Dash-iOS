@@ -576,7 +576,7 @@ static NSAttributedString *_titleBarItemAttributedStringTemplate = nil;
 {
     if(self.navigationController.viewControllers.count > 1)
     {
-        if([self.navigationController.visibleViewController respondsToSelector:@selector(searchController)] && [[(DHDocsetBrowser*)self.navigationController.visibleViewController searchController] isKindOfClass:[DHDBSearchController class]] && [(DHDocsetBrowser*)self.navigationController.visibleViewController searchController].displayController.active)
+        if([self.navigationController.visibleViewController respondsToSelector:@selector(searchController)] && [[(DHDocsetBrowser*)self.navigationController.visibleViewController searchController] isKindOfClass:[DHDBSearchController class]] && [(DHDocsetBrowser*)self.navigationController.visibleViewController searchController].searchController.active)
         {
             return NO;
         }
