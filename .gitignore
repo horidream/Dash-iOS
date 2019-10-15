@@ -59,3 +59,4 @@ fastlane/screenshots
 
 iOSInjectionProject/
 Dash/Dash iOS.xcodeproj/xcshareddata/
+.DS_Store
