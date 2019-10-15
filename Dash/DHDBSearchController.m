@@ -34,7 +34,6 @@
     UISearchController *ctrl = [[UISearchController alloc] initWithSearchResultsController:controller];
     ctrl.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     controller.searchController = ctrl;
-
     ctrl.delegate = controller;
     ctrl.searchResultsUpdater = controller;
 
@@ -44,7 +43,9 @@
     if (@available(iOS 11.0, *)) {
         controller.originalController.navigationItem.searchController = ctrl;
         controller.originalController.navigationItem.hidesSearchBarWhenScrolling = NO;
-
+//        CGFloat topbarHeight = ([UIApplication sharedApplication].statusBarFrame.size.height +
+//        (viewController.navigationController.navigationBar.frame.size.height ?: 0.0));
+        [controller.tableView setContentInset:UIEdgeInsetsMake(108, 0, 0, 0)];
     } else {
         controller.tableView.tableHeaderView = ctrl.searchBar;
     }
