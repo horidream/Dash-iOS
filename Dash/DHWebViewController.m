@@ -121,6 +121,7 @@ static id singleton = nil;
     }];
     
     BOOL hasMoreResult = NO;
+    BOOL shouldPop = NO;
     NSString *selectedText = [self selectedText];
     if (NSNotFound != index ){
         [navi popToViewController:[arr objectAtIndex:index] animated:NO];
@@ -131,11 +132,20 @@ static id singleton = nil;
         hasMoreResult = result.similarResults.count > 1;
         
     }else{
-        DHDocsetBrowser * controller = (DHDocsetBrowser*)[navi topViewController];
+        DHDocsetBrowser * controller;
+        if([[navi topViewController] isKindOfClass:[DHDocsetBrowser class]]){
+            controller = (DHDocsetBrowser*)[navi topViewController];
+        }else{
+            if([[navi viewControllers][0] isKindOfClass:[DHDocsetBrowser class]]){
+                shouldPop = YES;
+                controller = (DHDocsetBrowser*)[navi viewControllers][0];
+            }
+        }
         [controller.searchController.searchController.searchBar becomeFirstResponder];
         controller.searchController.searchController.searchBar.text = [sender isKindOfClass:[UIMenuController class]] ? selectedText : [UIPasteboard.generalPasteboard string];
         DHDBResult *result = [controller.searchController.results firstObject];
         hasMoreResult = result.similarResults.count > 1;
+        
     }
     [self.webView.window.rootViewController.view endEditing:YES];
     if(hasMoreResult){
@@ -149,6 +159,9 @@ static id singleton = nil;
             NSLog(@"%@", leftNavi.viewControllers);
         }];
         
+    }
+    if(shouldPop){
+        [navi popToRootViewControllerAnimated:YES];
     }
 }
 

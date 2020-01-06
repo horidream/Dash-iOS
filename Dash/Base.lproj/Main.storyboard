@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -625,8 +625,8 @@
         <segue reference="z3k-ky-jyi"/>
         <segue reference="vh9-ti-qTq"/>
         <segue reference="UMU-KR-a0h"/>
-        <segue reference="tZ0-kY-m9B"/>
-        <segue reference="hEp-xK-Brz"/>
-        <segue reference="y34-0z-6ul"/>
+        <segue reference="BAb-G2-tNG"/>
+        <segue reference="iku-X1-02v"/>
+        <segue reference="Zvp-4Y-BjQ"/>
     </inferredMetricsTieBreakers>
 </document>
