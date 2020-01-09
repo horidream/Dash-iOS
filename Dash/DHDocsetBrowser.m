@@ -264,7 +264,9 @@ static NSAttributedString *_titleBarItemAttributedStringTemplate = nil;
     [self updateSections:YES];
     
     NSMutableArray *buttons = [[NSMutableArray alloc] init];
-    [buttons addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch)]];
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ){
+        [buttons addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch)]];
+    }
     if([DHDocsetManager sharedManager].docsets.count > 0){
 //        [buttons add:self.editButtonItem];
         [buttons addObject:self.editButtonItem];
