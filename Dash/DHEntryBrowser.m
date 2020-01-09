@@ -36,7 +36,14 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DHBrowserCell" bundle:nil] forCellReuseIdentifier:@"DHBrowserCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DHLoadingCell" bundle:nil] forCellReuseIdentifier:@"DHLoadingCell"];
-    
+
+    NSMutableArray *buttons = [[NSMutableArray alloc] init];
+    [buttons addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch)]];
+    self.navigationItem.rightBarButtonItems = buttons;
+    NSLog(@"did add buttons %@", buttons);
+
+
+        
     self.tableView.rowHeight = 44;
 
     if(self.isRestoring)
@@ -44,6 +51,13 @@
         return;
     }
 }
+
+- (void)quickSearch{
+    [self.searchController.searchController.searchBar becomeFirstResponder];
+    self.searchController.searchController.searchBar.text = [UIPasteboard.generalPasteboard string];
+
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {

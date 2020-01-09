@@ -262,13 +262,27 @@ static NSAttributedString *_titleBarItemAttributedStringTemplate = nil;
     }
     NSArray *selected = (self.isEditing) ? [self.tableView indexPathsForSelectedRows] : nil;
     [self updateSections:YES];
-    self.navigationItem.rightBarButtonItem = ([DHDocsetManager sharedManager].docsets.count > 0) ? self.editButtonItem : nil;
+    
+    NSMutableArray *buttons = [[NSMutableArray alloc] init];
+    [buttons addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch)]];
+    if([DHDocsetManager sharedManager].docsets.count > 0){
+//        [buttons add:self.editButtonItem];
+        [buttons addObject:self.editButtonItem];
+    }
+    
+    self.navigationItem.rightBarButtonItems = buttons;
     self.tableView.tableFooterView = (self.sections.count) ? nil : [UIView new];
     [self.tableView reloadData];
     for(NSIndexPath *toSelect in selected)
     {
         [self.tableView selectRowAtIndexPath:toSelect animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
+}
+
+- (void)quickSearch
+{
+    [self.searchController.searchController.searchBar becomeFirstResponder];
+    self.searchController.searchController.searchBar.text = [UIPasteboard.generalPasteboard string];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
