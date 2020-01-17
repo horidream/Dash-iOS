@@ -190,7 +190,11 @@
     NSString *segueIdentifier = [self segueIdentifierForIndexPath:indexPath];
     if(segueIdentifier)
     {
-        [self performSegueWithIdentifier:[self segueIdentifierForIndexPath:indexPath] sender:self];
+        UINavigationController *rightNavController = self.splitViewController.viewControllers.lastObject;
+        Boolean canNavigate = !([rightNavController.topViewController isKindOfClass:[DHDocsetDownloader self]] && indexPath.item == 0);
+        if(canNavigate){
+            [self performSegueWithIdentifier:[self segueIdentifierForIndexPath:indexPath] sender:self];
+        }
     }
 }
 

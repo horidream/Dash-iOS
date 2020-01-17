@@ -268,7 +268,6 @@ static NSAttributedString *_titleBarItemAttributedStringTemplate = nil;
         [buttons addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paste"] style:UIBarButtonItemStylePlain target:self action:@selector(quickSearch)]];
     }
     if([DHDocsetManager sharedManager].docsets.count > 0){
-//        [buttons add:self.editButtonItem];
         [buttons addObject:self.editButtonItem];
     }
     
