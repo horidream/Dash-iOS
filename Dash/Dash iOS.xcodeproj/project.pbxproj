@@ -21,7 +21,6 @@
 		4303A3D119C668BC00A7CD85 /* DHType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4303A3D019C668BC00A7CD85 /* DHType.m */; };
 		4303A3D419C668C200A7CD85 /* DHTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4303A3D319C668C200A7CD85 /* DHTypes.m */; };
 		430C768B19E52B7F006F0DE0 /* DHTarixProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 430C768A19E52B7F006F0DE0 /* DHTarixProtocol.m */; };
-		430C768D19E55E6E006F0DE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430C768C19E55E6E006F0DE0 /* MobileCoreServices.framework */; };
 		431108D519C7AE6D0050174C /* DHUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 431108D419C7AE6D0050174C /* DHUnarchiver.m */; };
 		431173DC19DA3513007E238E /* DHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 431173DB19DA3513007E238E /* DHImageCache.m */; };
 		432321E21AA1BBF70045BA77 /* DHRemoteBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 432321E11AA1BBF70045BA77 /* DHRemoteBrowser.m */; };
@@ -250,6 +249,7 @@
 		43FD2F0219BB8D87007E594D /* DHWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FD2F0119BB8D87007E594D /* DHWebViewController.m */; };
 		43FD2F0419BB8D87007E594D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43FD2F0319BB8D87007E594D /* Images.xcassets */; };
 		45D28F8ABD1FC392B1930467 /* libPods-Dash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2364AD2032B0714BCD2265 /* libPods-Dash.a */; };
+		99E3506B2593056D006377B2 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E3506A2593056D006377B2 /* CoreServices.framework */; };
 		F5C39C00200A836D00734571 /* DHDocsetBrowserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C39BFF200A836D00734571 /* DHDocsetBrowserViewModel.m */; };
 /* End PBXBuildFile section */
 
@@ -485,6 +485,7 @@
 		642921D57BB2F4B0450331EC /* Pods-Dash-Dash App Store.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash-Dash App Store.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash-Dash App Store/Pods-Dash-Dash App Store.debug.xcconfig"; sourceTree = "<group>"; };
 		6BB3997912C96D08897BF444 /* Pods-Dash-Dash App Store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash-Dash App Store.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash-Dash App Store/Pods-Dash-Dash App Store.release.xcconfig"; sourceTree = "<group>"; };
 		7E45E2662CBB7671D0D844A3 /* Pods-Dash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash/Pods-Dash.release.xcconfig"; sourceTree = "<group>"; };
+		99E3506A2593056D006377B2 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		9A2364AD2032B0714BCD2265 /* libPods-Dash.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dash.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB91D369AD27465BED375AD /* libPods-Dash-Dash App Store.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dash-Dash App Store.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE47FF5DEE33300EBFF9AEA /* Pods-Dash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash/Pods-Dash.debug.xcconfig"; sourceTree = "<group>"; };
@@ -516,12 +517,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BB043F19ED0B19000FBC0D /* JavaScriptCore.framework in Frameworks */,
-				430C768D19E55E6E006F0DE0 /* MobileCoreServices.framework in Frameworks */,
 				437FE06819E2B4010022ADF4 /* WebKit.framework in Frameworks */,
 				43EE932A19CD079600FFF30C /* libarchive.a in Frameworks */,
 				43352F6519C7A69900D4B1D8 /* libz.dylib in Frameworks */,
 				4303A3C419C658B000A7CD85 /* libsqlite3.dylib in Frameworks */,
 				43FD2EE819BB8D87007E594D /* CoreGraphics.framework in Frameworks */,
+				99E3506B2593056D006377B2 /* CoreServices.framework in Frameworks */,
 				43FD2EEA19BB8D87007E594D /* UIKit.framework in Frameworks */,
 				43FD2EE619BB8D87007E594D /* Foundation.framework in Frameworks */,
 				45D28F8ABD1FC392B1930467 /* libPods-Dash.a in Frameworks */,
@@ -976,6 +977,7 @@
 		43FD2EE419BB8D87007E594D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99E3506A2593056D006377B2 /* CoreServices.framework */,
 				43A1C2632001700600512DB3 /* Apple_Docs_Framework.framework */,
 				43BB043E19ED0B19000FBC0D /* JavaScriptCore.framework */,
 				430C768C19E55E6E006F0DE0 /* MobileCoreServices.framework */,
@@ -1791,6 +1793,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5296P9QS3C;
 				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks\"";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1815,6 +1818,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				STRIP_SWIFT_SYMBOLS = NO;
+				VALIDATE_WORKSPACE = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1831,6 +1835,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5296P9QS3C;
 				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dash-Prefix.pch";
@@ -1859,6 +1864,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				STRIP_STYLE = debugging;
 				STRIP_SWIFT_SYMBOLS = NO;
+				VALIDATE_WORKSPACE = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
